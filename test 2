@@ -1,0 +1,16 @@
+
+1)Допустим данные представлены с помощью массив оьъектов Data ,где каждый экзмепляр содержит поля :age,:salarie,:height,:weights
+2)Допустим Filter это обьект с параметрами для поиска,параметры представленны в виде полей :age,:salary,:height,:weights
+3)Инициализируем объект Filter с параметрами для поиска
+4)GlobalFilteredData=Data , СurrentFilter=Filter[название параметра]
+4.1) Проверяем Filter[название параметра], если оно не пустое
+4.2) Проверяем является ли Filter[название параметра] диапазоном
+4.3) Если Filter[название параметра] - единичное значение
+4.3.1) FilteredData=GlobalFilteredData.select { |w| w.название параметра == Filter[название параметра] }
+4.4) Если Filter[название параметра] - диапазон
+4.4.1) Filter[название параметра].each do |filter_value|
+  4.4.1.1)FilteredData=FilteredData.merge(GlobalFilteredData.select { |w| w.название параметра == filter_value })
+  4.5)GlobalFilteredData=FilteredData
+  4.6)Если есть следующий параметр в Filter то СurrentFilter=Filter[название следующего параметра]
+  4.6.1) Переходим к пункту 4.1
+  4.7) Если в Filter параметры кончились то выводим GlobalFilteredData
